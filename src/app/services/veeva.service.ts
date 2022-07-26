@@ -7,7 +7,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class VeevaService {
   url = 'https://apachiring-job-skills-for-john.veevavault.com/api/v22.1/'; 
-  
+  sessionId:string;
+
   constructor(private http: HttpClient) { }
   
   authenticate() {
@@ -34,8 +35,9 @@ export class VeevaService {
 
   }
 
-  getAllSites() {
+  getAllSites(id) {
     //https://apachiring-job-skills-for-john.veevavault.com/api/v22.1/vobjects/site__v?fields=id,name__v,site_status__v,site_name__v,location__v,study__v,study_name__v,study_country__v,location__v,created_date__v
+    let sessionId = id;
     let testSites= {
         "responseStatus": "SUCCESS",
         "responseDetails": {
