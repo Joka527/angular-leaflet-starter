@@ -12,7 +12,7 @@ import "leaflet-control-geocoder";
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-
+  sessionId: string;
   map: any;
   initSites: any;
   sitesWithCoords: any;
@@ -37,10 +37,22 @@ export class MapComponent implements OnInit {
   test:any;
 
   constructor (private veevaService: VeevaService) {
+    if (window.addEventListener) {
+      window.addEventListener("load", () => {
+        let readyMessage = JSON.stringify({'message_id': 'ready', 'data': {}});
+        window.parent.postMessage(readyMessage, '*');
+      });
+      window.addEventListener("load", (e:any) => {
+        let message = JSON.parse(e.originalEvent.data);
+        if (message['message_id'] == 'session_id') {
+        this.sessionId = message['data']['session_id'];
+        }
+      });
+     } 
   }
 
   ngOnInit () {
-    this.initSites = this.veevaService.getAllSites();
+    this.initSites = this.veevaService.getAllSites(this.sessionId);
     this.updateWithCoords(this.initSites)
       .then(results=> {
       this.sitesWithCoords = results;
