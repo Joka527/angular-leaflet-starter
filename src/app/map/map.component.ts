@@ -52,7 +52,7 @@ export class MapComponent implements OnInit {
     this.results = results;
   }
 
-  onMapClick (e: LeafletMouseEvent) {
+  onMapClick (e: any) {
     // this.clearMap();
     this.updateMapPoint(e.latlng.lat, e.latlng.lng);
   }
