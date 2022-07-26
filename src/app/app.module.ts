@@ -11,6 +11,7 @@ import {FormsModule} from '@angular/forms';
 import {MapComponent} from './map/map.component';
 import {MapPointFormComponent} from './map-point-form/map-point-form.component';
 import {ResultsListComponent} from './results-list/results-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {ResultsListComponent} from './results-list/results-list.component';
     AppRoutingModule,
     HttpClientModule,
     LeafletModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     NominatimService
