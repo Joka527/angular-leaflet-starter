@@ -26,7 +26,7 @@ app.get('/veeva/getSites', async (req, res) => {
 })
 
 app.use(express.static(__dirname + '/dist/angular-leaflet-starter'));
-app.get('/', function(req,res) {
+app.get('/*', function(req,res) {
   res.sendFile(path.join(__dirname+
   '/dist/angular-leaflet-starter/index.html'));
 });
