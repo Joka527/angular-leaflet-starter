@@ -26,15 +26,11 @@ export class VeevaService {
   getAllSites(id) {
     let sessionId = id;
     
-    let headers = new HttpHeaders({
-      'Authorization': sessionId,
-      // 'Access-Control-Allow-Origin': '*',
-      // "Access-Control-Allow-Methods":"OPTIONS, GET, POST, PUT, PATCH, DELETE",
-      // "Access-Control-Allow-Headers": "Content-Type, Authorization"
-    });
-    let options = { headers: headers };
+    let httpOptions = { 
+        headers: new HttpHeaders({Authorization: sessionId})
+    };
 
-    return this.http.get('https://etmf-integration.herokuapp.com/veeva/getSites', options);
+    return this.http.get('https://localhost:8080/veeva/sites', httpOptions);
   //   let testSites= {
   //       "responseStatus": "SUCCESS",
   //       "responseDetails": {

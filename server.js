@@ -10,7 +10,7 @@ const sitesUrl= 'vobjects/site__v?fields=id,name__v,site_status__v,site_status_c
 
 // This sets up a route to localhost:3000/random and goes off and hits
 // cat-fact.herokuapp.com/facts/random
-app.get('/veeva/getSites', async (req, res) => {
+app.get('/veeva/sites', async (req, res) => {
   try {
     const apiResponse = await fetch(
       veevaUrl + sitesUrl, { headers: { 'Authorization': req.headers.Authorization }
@@ -27,6 +27,8 @@ app.get('/veeva/getSites', async (req, res) => {
 
 app.use(express.static(__dirname + '/dist/angular-leaflet-starter'));
 app.get('/*', function(req,res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization' );
   res.sendFile(path.join(__dirname+
   '/dist/angular-leaflet-starter/index.html'));
 });
