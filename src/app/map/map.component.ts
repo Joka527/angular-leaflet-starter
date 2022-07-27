@@ -65,10 +65,10 @@ export class MapComponent implements OnInit {
         }
       });
      } 
-    // this.sessionId = 'E5E061CA597D76E7F99B369D786CCDE027B28684982D2EFAEFCA027C350C70D6501A82594831E1BB832DCD70903D87E25CC8A18B03201D8F108B67C885F45BC7';
+    // this.sessionId = '316A02B0EFDBCC738123506AC6E31AA3748A9DA77F0F487A85DA68F0462492C3304220064CDC0BA89E99ACFC4A6513D7521FF1B8C777418A082CC0C89ECEF0FC';
     // this.veevaService.getAllSites(this.sessionId)
     // .subscribe(results => {
-    //   this.initSites=results
+    //   this.initSites= results;
     //   this.updateWithCoords(this.initSites)
     //     .then(results=> {
     //     this.sitesWithCoords = results;
@@ -94,7 +94,8 @@ export class MapComponent implements OnInit {
     };
   }
 
-  updateWithCoords(sites) {
+  updateWithCoords(sitesrsp) {
+    let sites = sitesrsp.data;
     return Promise.all(sites.map(site => this.getCoords(site)))
             .then( data => {
                   let results: any = data;

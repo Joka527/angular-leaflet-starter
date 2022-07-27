@@ -13,7 +13,7 @@ const sitesUrl= 'vobjects/site__v?fields=id,name__v,site_status__v,site_status_c
 app.get('/veeva/sites', async (req, res) => {
   try {
     const apiResponse = await fetch(
-      veevaUrl + sitesUrl, { headers: { 'Authorization': req.headers.Authorization }
+      veevaUrl + sitesUrl, { headers: { 'Authorization': req.headers.authorization }
     })
     const apiResponseJson = await apiResponse.json()
     // await db.collection('collection').insertOne(apiResponseJson)

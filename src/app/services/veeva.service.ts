@@ -30,7 +30,7 @@ export class VeevaService {
         headers: new HttpHeaders({Authorization: sessionId})
     };
 
-    return this.http.get('https://etmf-integration.herokuapp.com/veeva/sites', httpOptions);
+    return this.http.get('http://127.0.0.1:8080/veeva/sites', httpOptions);
   //   let testSites= {
   //       "responseStatus": "SUCCESS",
   //       "responseDetails": {
