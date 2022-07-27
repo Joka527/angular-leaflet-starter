@@ -37,6 +37,10 @@ export class MapComponent implements OnInit {
   test:any;
 
   constructor (private veevaService: VeevaService) {
+    
+  }
+
+  ngOnInit () {
     if (window.addEventListener) {
       window.addEventListener("load", () => {
         let readyMessage = JSON.stringify({'message_id': 'ready', 'data': {}});
@@ -47,14 +51,12 @@ export class MapComponent implements OnInit {
           let message = JSON.parse(e.data);
           if (message['message_id'] == 'session_id') {
             this.sessionId = message['data']['session_id'];
+            this.initSites = this.veevaService.getAllSites(this.sessionId);
           }
         }
       });
      } 
-  }
-
-  ngOnInit () {
-    this.initSites = this.veevaService.getAllSites(this.sessionId);
+    
     this.updateWithCoords(this.initSites)
       .then(results=> {
       this.sitesWithCoords = results;
