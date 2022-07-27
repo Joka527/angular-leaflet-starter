@@ -6,7 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VeevaService {
-  url = 'https://apachiring-job-skills-for-john.veevavault.com/api/v22.1/'; 
+  
   sessionId:string;
 
   constructor(private http: HttpClient) { }
@@ -37,7 +37,7 @@ export class VeevaService {
 
   getAllSites(id) {
     let sessionId = id;
-    let siteUrl = 'vobjects/site__v?fields=id,name__v,site_status__v,site_status_color__c,site_name__v,location__v,study__v,study_name__v,study_country__v,location__v,created_date__v'
+    
     let headers = new HttpHeaders({
       'Authorization': sessionId,
       'Access-Control-Allow-Origin': '*',
@@ -46,7 +46,7 @@ export class VeevaService {
     });
     let options = { headers: headers };
 
-    return this.http.get(this.url+siteUrl, options);
+    return this.http.get('http://127.0.0.1:8080/veeva/getSites', options);
   //   let testSites= {
   //       "responseStatus": "SUCCESS",
   //       "responseDetails": {
