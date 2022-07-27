@@ -42,7 +42,7 @@ export class VeevaService {
       'Authorization': sessionId});
     let options = { headers: headers };
 
-    return this.http.get(this.url+'siteUrl', options);
+    return this.http.get(this.url+siteUrl, options);
   //   let testSites= {
   //       "responseStatus": "SUCCESS",
   //       "responseDetails": {
