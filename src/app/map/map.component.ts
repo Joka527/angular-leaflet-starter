@@ -43,8 +43,8 @@ export class MapComponent implements OnInit {
         window.parent.postMessage(readyMessage, '*');
       });
       window.addEventListener("message", (e:any) => {
-        if(e.originalEvent){
-          let message = JSON.parse(e.originalEvent.data);
+        if(e.data){
+          let message = JSON.parse(e.data);
           if (message['message_id'] == 'session_id') {
             this.sessionId = message['data']['session_id'];
           }
