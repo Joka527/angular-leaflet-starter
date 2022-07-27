@@ -41,40 +41,40 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit () {
-    // if (window.addEventListener) {
-    //   window.addEventListener("load", () => {
-    //     let readyMessage = JSON.stringify({'message_id': 'ready', 'data': {}});
-    //     window.parent.postMessage(readyMessage, '*');
-    //   });
-    //   window.addEventListener("message", (e:any) => {
-    //     if(e.data){
-    //       let message = JSON.parse(e.data);
-    //       if (message['message_id'] == 'session_id') {
-    //         this.sessionId = message['data']['session_id'];
-            
-    //         this.veevaService.getAllSites(this.sessionId)
-    //           .subscribe(results => {
-    //             this.initSites=results
-    //             this.updateWithCoords(this.initSites)
-    //               .then(results=> {
-    //               this.sitesWithCoords = results;
-    //               this.plotMarkers(this.sitesWithCoords);
-    //             });
-    //           });
-    //       }
-    //     }
-    //   });
-    //  } 
-    this.sessionId = 'E5E061CA597D76E7F99B369D786CCDE027B28684982D2EFAEFCA027C350C70D6501A82594831E1BB832DCD70903D87E25CC8A18B03201D8F108B67C885F45BC7';
-    this.veevaService.getAllSites(this.sessionId)
-    .subscribe(results => {
-      this.initSites=results
-      this.updateWithCoords(this.initSites)
-        .then(results=> {
-        this.sitesWithCoords = results;
-        this.plotMarkers(this.sitesWithCoords);
+    if (window.addEventListener) {
+      window.addEventListener("load", () => {
+        let readyMessage = JSON.stringify({'message_id': 'ready', 'data': {}});
+        window.parent.postMessage(readyMessage, '*');
       });
-    });
+      window.addEventListener("message", (e:any) => {
+        if(e.data){
+          let message = JSON.parse(e.data);
+          if (message['message_id'] == 'session_id') {
+            this.sessionId = message['data']['session_id'];
+            
+            this.veevaService.getAllSites(this.sessionId)
+              .subscribe(results => {
+                this.initSites=results
+                this.updateWithCoords(this.initSites)
+                  .then(results=> {
+                  this.sitesWithCoords = results;
+                  this.plotMarkers(this.sitesWithCoords);
+                });
+              });
+          }
+        }
+      });
+     } 
+    // this.sessionId = 'E5E061CA597D76E7F99B369D786CCDE027B28684982D2EFAEFCA027C350C70D6501A82594831E1BB832DCD70903D87E25CC8A18B03201D8F108B67C885F45BC7';
+    // this.veevaService.getAllSites(this.sessionId)
+    // .subscribe(results => {
+    //   this.initSites=results
+    //   this.updateWithCoords(this.initSites)
+    //     .then(results=> {
+    //     this.sitesWithCoords = results;
+    //     this.plotMarkers(this.sitesWithCoords);
+    //   });
+    // });
   }
 
   refreshSearchList (results: NominatimResponse[]) {
