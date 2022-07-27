@@ -42,10 +42,12 @@ export class MapComponent implements OnInit {
         let readyMessage = JSON.stringify({'message_id': 'ready', 'data': {}});
         window.parent.postMessage(readyMessage, '*');
       });
-      window.addEventListener("load", (e:any) => {
-        let message = JSON.parse(e.originalEvent.data);
-        if (message['message_id'] == 'session_id') {
-        this.sessionId = message['data']['session_id'];
+      window.addEventListener("message", (e:any) => {
+        if(e.originalEvent){
+          let message = JSON.parse(e.originalEvent.data);
+          if (message['message_id'] == 'session_id') {
+            this.sessionId = message['data']['session_id'];
+          }
         }
       });
      } 
