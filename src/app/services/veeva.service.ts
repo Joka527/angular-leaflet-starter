@@ -28,9 +28,9 @@ export class VeevaService {
     
     let headers = new HttpHeaders({
       'Authorization': sessionId,
-      'Access-Control-Allow-Origin': '*',
-      "Access-Control-Allow-Methods":"OPTIONS, GET, POST, PUT, PATCH, DELETE",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization"
+      // 'Access-Control-Allow-Origin': '*',
+      // "Access-Control-Allow-Methods":"OPTIONS, GET, POST, PUT, PATCH, DELETE",
+      // "Access-Control-Allow-Headers": "Content-Type, Authorization"
     });
     let options = { headers: headers };
 
