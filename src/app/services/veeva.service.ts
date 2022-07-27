@@ -39,7 +39,9 @@ export class VeevaService {
     let sessionId = id;
     let siteUrl = 'vobjects/site__v?fields=id,name__v,site_status__v,site_status_color__c,site_name__v,location__v,study__v,study_name__v,study_country__v,location__v,created_date__v'
     let headers = new HttpHeaders({
-      'Authorization': sessionId});
+      'Authorization': sessionId,
+      'Access-Control-Allow-Origin': 'https://apachiring-job-skills-for-john.veevavault.com'
+    });
     let options = { headers: headers };
 
     return this.http.get(this.url+siteUrl, options);
