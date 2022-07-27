@@ -18,7 +18,7 @@ app.get('/veeva/getSites', async (req, res) => {
     const apiResponseJson = await apiResponse.json()
     // await db.collection('collection').insertOne(apiResponseJson)
     console.log(apiResponseJson)
-    res.send('Done – check console log')
+    res.send(apiResponseJson)
   } catch (err) {
     console.log(err)
     res.status(500).send('Something went wrong')
