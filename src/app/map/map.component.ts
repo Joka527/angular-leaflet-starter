@@ -51,17 +51,19 @@ export class MapComponent implements OnInit {
           let message = JSON.parse(e.data);
           if (message['message_id'] == 'session_id') {
             this.sessionId = message['data']['session_id'];
-            this.initSites = this.veevaService.getAllSites(this.sessionId);
+            this.veevaService.getAllSites(this.sessionId)
+              .subscribe(results => {
+                this.initSites=results
+                this.updateWithCoords(this.initSites)
+                  .then(results=> {
+                  this.sitesWithCoords = results;
+                  this.plotMarkers(this.sitesWithCoords);
+                });
+              });
           }
         }
       });
      } 
-    
-    this.updateWithCoords(this.initSites)
-      .then(results=> {
-      this.sitesWithCoords = results;
-      this.plotMarkers(this.sitesWithCoords);
-    });
   }
 
   refreshSearchList (results: NominatimResponse[]) {
