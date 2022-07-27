@@ -34,7 +34,7 @@ export class VeevaService {
     });
     let options = { headers: headers };
 
-    return this.http.get('http://127.0.0.1:8080/veeva/getSites', options);
+    return this.http.get('https://etmf-integration.herokuapp.com/veeva/getSites', options);
   //   let testSites= {
   //       "responseStatus": "SUCCESS",
   //       "responseDetails": {
