@@ -11,18 +11,6 @@ export class VeevaService {
 
   constructor(private http: HttpClient) { }
   
-  authenticate() {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'});
-    let options = { headers: headers };
-    let creds = {
-      username: 'John.Kang@apachiring.com',
-      password: 'AP@Chiring1'
-    }
-
-    return this.http.post(this.url+'auth', creds, options)
-  }
-
   getAllStudies(){
 
   }
