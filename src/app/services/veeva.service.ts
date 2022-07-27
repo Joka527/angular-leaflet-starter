@@ -40,7 +40,9 @@ export class VeevaService {
     let siteUrl = 'vobjects/site__v?fields=id,name__v,site_status__v,site_status_color__c,site_name__v,location__v,study__v,study_name__v,study_country__v,location__v,created_date__v'
     let headers = new HttpHeaders({
       'Authorization': sessionId,
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Methods":"OPTIONS, GET, POST, PUT, PATCH, DELETE",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization"
     });
     let options = { headers: headers };
 
