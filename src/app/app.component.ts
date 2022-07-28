@@ -12,8 +12,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit () {
-    // this.veevaService.authenticate().subscribe((result) =>{
-    //   console.warn();
-    // })
   }
 }
