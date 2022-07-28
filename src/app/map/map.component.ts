@@ -55,41 +55,30 @@ export class MapComponent implements OnInit {
           if (message['message_id'] == 'session_id') {
             this.sessionId = message['data']['session_id'];
             
-            this.veevaService.getAllSites(this.sessionId)
-              .subscribe(results => {
-                this.initSites=results
-                this.updateWithGeoCode(this.initSites)
-                  .then(results=> {
-                  this.sitesWithCoords = results;
-                  this.plotMarkers(this.sitesWithCoords);
+            this.veevaService.getAllCountries(this.sessionId)
+            .subscribe(results => {
+              this.initCountries= results;
+              this.updateWithGeoCode(this.initCountries)
+                .then(results=> {
+                this.countriesWithCoords = results;
+                this.addFeature(this.countriesWithCoords);
+        
+                this.veevaService.getAllSites(this.sessionId)
+                .subscribe(results => {
+                  this.initSites= results;
+                  this.updateWithGeoCode(this.initSites)
+                    .then(results=> {
+                    this.sitesWithCoords = results;
+                    this.plotMarkers(this.sitesWithCoords);
+                    this.hideLoader();
+                  });
                 });
               });
+            });
           }
         }
       });
      } 
-    // this.sessionId = '09F7591FACB67AA4A9E5524E4907EE5CEABDABDCD079B2711D792F610A92F2C84737C0FA225B09B74F3E8F62A2DAD3D58D9CA44A622D090BFFF665BD3C22C8D0';
-
-    // this.veevaService.getAllCountries(this.sessionId)
-    // .subscribe(results => {
-    //   this.initCountries= results;
-    //   this.updateWithGeoCode(this.initCountries)
-    //     .then(results=> {
-    //     this.countriesWithCoords = results;
-    //     this.addFeature(this.countriesWithCoords);
-
-    //     this.veevaService.getAllSites(this.sessionId)
-    //     .subscribe(results => {
-    //       this.initSites= results;
-    //       this.updateWithGeoCode(this.initSites)
-    //         .then(results=> {
-    //         this.sitesWithCoords = results;
-    //         this.plotMarkers(this.sitesWithCoords);
-    //         this.hideLoader();
-    //       });
-    //     });
-    //   });
-    // });
   }
 
   refreshSearchList (results: NominatimResponse[]) {
