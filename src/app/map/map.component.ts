@@ -230,6 +230,14 @@ export class MapComponent implements OnInit {
   initializeMap($event: Leaflet.Map) {
     this.map = $event;
     this.geojsonLayer = Leaflet.geoJSON().addTo(this.map);
+
+    let mapTitle = new Leaflet.Control({position: 'topright'});
+    mapTitle.onAdd = function (map) {
+        let div = Leaflet.DomUtil.create('div', 'info map-title');
+            div.innerHTML="<b>WDProduct1</b> Phase III Study Global Map";
+        return div;
+    };
+    mapTitle.addTo(this.map);
     
     (function() {
       let control = new Leaflet.Control({position:'topright'});
